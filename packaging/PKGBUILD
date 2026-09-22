@@ -1,0 +1,32 @@
+# Maintainer: Andre Bruno
+pkgname=omarchy-hosts-editor
+pkgver=0.1.0
+pkgrel=1
+pkgdesc="Hosts Editor for Omarchy — add, block and toggle /etc/hosts entries from a menu (PowerToys Hosts File Editor, ported)"
+arch=('any')
+url="https://github.com/andrebbruno/omarchy-hosts-editor"
+license=('MIT')
+depends=('python')
+optdepends=('polkit: password dialog when saving from the menu'
+            'gum: menu fallback outside Omarchy')
+makedepends=('python-build' 'python-installer' 'python-wheel' 'python-setuptools')
+checkdepends=('python-pytest')
+source=("$pkgname-$pkgver.tar.gz::$url/archive/v$pkgver.tar.gz")
+sha256sums=('SKIP')
+
+build() {
+  cd "$pkgname-$pkgver"
+  python -m build --wheel --no-isolation
+}
+
+check() {
+  cd "$pkgname-$pkgver"
+  PYTHONPATH="$PWD" python -m pytest tests -q
+}
+
+package() {
+  cd "$pkgname-$pkgver"
+  python -m installer --destdir="$pkgdir" dist/*.whl
+  install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+  install -Dm644 README.md "$pkgdir/usr/share/doc/$pkgname/README.md"
+}

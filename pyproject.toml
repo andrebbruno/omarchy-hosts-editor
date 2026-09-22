@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "omarchy-hosts-editor"
+version = "0.1.0"
+description = "Hosts file editor for Omarchy: add, block and toggle /etc/hosts entries from a menu, with validation and a backup on every save."
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.11"
+authors = [{ name = "Andre Bruno" }]
+keywords = ["omarchy", "powertoys", "hosts", "etc-hosts", "hyprland"]
+classifiers = [
+  "Environment :: X11 Applications",
+  "Operating System :: POSIX :: Linux",
+  "Programming Language :: Python :: 3",
+  "Topic :: System :: Networking",
+]
+dependencies = []
+
+[project.scripts]
+omarchy-hosts = "ohosts.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/andrebbruno/omarchy-hosts-editor"
+
+[tool.setuptools.packages.find]
+include = ["ohosts*"]

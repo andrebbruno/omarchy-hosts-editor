@@ -12,7 +12,7 @@ optdepends=('polkit: password dialog when saving from the menu'
 makedepends=('python-build' 'python-installer' 'python-wheel' 'python-setuptools')
 checkdepends=('python-pytest')
 source=("$pkgname-$pkgver.tar.gz::$url/archive/v$pkgver.tar.gz")
-sha256sums=('SKIP')
+sha256sums=('ec1d67906c8c984dde234ac701f891d50fca2625dc4408fc307cb593a464de32')
 
 build() {
   cd "$pkgname-$pkgver"
